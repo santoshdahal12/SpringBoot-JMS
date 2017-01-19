@@ -18,12 +18,12 @@ public class JMSConfiguration {
 	@Bean
 	public MarshallingMessageConverter createMarshallingMessageConverter( final Jaxb2Marshaller jaxb2Marshaller){
 
-	return new MarshallingMessageConverter();
+	return new MarshallingMessageConverter(jaxb2Marshaller);
 }
 	@Bean
-	private Jaxb2Marshaller createJmsMarshaller(@Value("${context.path}")final String contextPath, 
+	public Jaxb2Marshaller createJmsMarshaller(@Value("${context.path}")final String contextPath, 
 			
-			@Value("${schema.loaction}") final Resource schema){
+			@Value("${schema.location}") final Resource schema){
 		
 		Jaxb2Marshaller jaxb2Marshaller= new Jaxb2Marshaller();
 		jaxb2Marshaller.setContextPath(contextPath);
